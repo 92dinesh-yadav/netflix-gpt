@@ -1,8 +1,11 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { validateLoginForm, validateSignUpForm } from "../utils/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
 
@@ -11,6 +14,8 @@ const Login = () => {
     const fullName = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
 
     const toggleSignInForm = () => {
@@ -33,7 +38,15 @@ const Login = () => {
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                updateProfile(auth.currentUser, {
+                    displayName: fullName.current.value, photoURL: "https://avatars.githubusercontent.com/u/19631177?s=400&u=e58e64dac6fb9062bdcf84c6e0cd0f6d7bb2903e&v=4"
+                }).then(() => {
+                    const {uid, email, displayName, photoURL} = auth.currentUser;
+                    dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}));
+                    navigate("/browse");
+                }).catch((error) => {
+                });
+                
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -45,7 +58,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth,email.current.value, password.current.value)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                navigate("/browse");
             })
             .catch((error) => {
                 const errorCode = error.code;
