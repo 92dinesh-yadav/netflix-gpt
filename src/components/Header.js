@@ -9,6 +9,7 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log(user);
 
   const handleSignOut = () => {
     signOut(auth)
