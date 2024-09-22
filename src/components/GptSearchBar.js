@@ -22,8 +22,6 @@ const GptSearchBar = () => {
   };
 
   const handleGtpSearchClick = async () => {
-    console.log(searchText.current.value);
-
     /* const gtpQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
@@ -47,7 +45,6 @@ const GptSearchBar = () => {
     dispatch(
       addGtpMovies({ movieNames: gptMovies, movieResults: tmdbResults })
     );
-    console.log(tmdbResults);
   };
 
   return (
