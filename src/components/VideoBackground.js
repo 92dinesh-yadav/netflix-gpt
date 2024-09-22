@@ -6,7 +6,7 @@ const VideoBackground = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movies?.tailerVideo);
 
   return (
-    <div className="w-screen">
+    <div className="w-screen=">
       <iframe
         className="w-screen aspect-video"
         src={

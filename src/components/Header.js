@@ -44,7 +44,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute py-2 pl-20 bg-gradient-to-b from-black w-screen flex justify-between z-10">
+    <div className="absolute py-2 pl-20 bg-gradient-to-b from-black w-[100%] flex justify-between z-10">
       <img className="w-48" src={APP_LOGO} alt="logo" />
 
       {user && (
