@@ -59,8 +59,8 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute py-2 pl-20 bg-gradient-to-b from-black w-[100%] flex justify-between z-10">
-      <img className="w-48" src={APP_LOGO} alt="logo" />
+    <div className="absolute py-2 pl-20 bg-gradient-to-b from-black w-[100%] flex flex-col md:flex-row justify-between z-10">
+      <img className="w-48 mx-auto md:mx-0" src={APP_LOGO} alt="logo" />
 
       {user && (
         <div className="flex p-2">
